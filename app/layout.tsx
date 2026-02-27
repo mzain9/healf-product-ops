@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body className="font-sans antialiased">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <div className="flex min-h-screen bg-background">
             <Sidebar />
             <main className="flex-1 ml-64 transition-all duration-300 ease-in-out lg:ml-64">
