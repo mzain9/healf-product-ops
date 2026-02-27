@@ -2,6 +2,28 @@
 
 A modern product operations and inventory management application for health and wellness products. Manage products, owners, stock levels, and view analytics from a single dashboard with light and dark theme support.
 
+## UI screenshots
+
+### 1. Dashboard — Light theme
+
+![Dashboard — Light theme](./docs/screenshots/dashboard-light.png)
+
+### 2. Dashboard — Dark theme
+
+![Dashboard — Dark theme](./docs/screenshots/dashboard-dark.png)
+
+### 3. Products list
+
+![Products list](./docs/screenshots/products-list.png)
+
+### 4. Product edit page
+
+![Product edit page](./docs/screenshots/product-edit.png)
+
+### 5. Product detail page
+
+![Product detail page](./docs/screenshots/product-detail.png)
+
 ---
 
 ## Project overview
@@ -188,30 +210,6 @@ healf-product-ops/
 ├── package.json
 └── README.md
 ```
-
----
-
-## UI screenshots
-
-### 1. Dashboard — Light theme
-
-![Dashboard — Light theme](./docs/screenshots/dashboard-light.png)
-
-### 2. Dashboard — Dark theme
-
-![Dashboard — Dark theme](./docs/screenshots/dashboard-dark.png)
-
-### 3. Products list
-
-![Products list](./docs/screenshots/products-list.png)
-
-### 4. Product edit page
-
-![Product edit page](./docs/screenshots/product-edit.png)
-
-### 5. Product detail page
-
-![Product detail page](./docs/screenshots/product-detail.png)
 
 ---
 
