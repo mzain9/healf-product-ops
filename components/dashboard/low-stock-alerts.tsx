@@ -19,55 +19,55 @@ interface LowStockAlertsProps {
 
 export function LowStockAlerts({ products }: LowStockAlertsProps) {
   return (
-    <Card className="border-border">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0">
+    <Card className="border-border min-w-0">
+      <CardHeader className="flex flex-col gap-2 px-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:px-6">
         <CardTitle className="flex items-center gap-2 text-base">
-          <AlertTriangle className="h-4 w-4 text-amber-500" />
+          <AlertTriangle className="h-4 w-4 shrink-0 text-amber-500" />
           Low stock alerts
         </CardTitle>
         <Link href="/products?sortBy=inventory&sortOrder=asc">
-          <Button variant="ghost" size="sm">
+          <Button variant="ghost" size="sm" className="w-full sm:w-auto">
             View all
           </Button>
         </Link>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-4 sm:px-6">
         {!products.length ? (
           <p className="py-6 text-center text-sm text-muted-foreground">
             No low stock items
           </p>
         ) : (
-          <div className="max-h-[290px] overflow-y-auto rounded-md border border-border">
+          <div className="max-h-[260px] overflow-auto rounded-md border border-border sm:max-h-[290px]">
             <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Product</TableHead>
-                <TableHead>SKU</TableHead>
-                <TableHead className="text-right">Stock</TableHead>
-                <TableHead className="text-right">Price</TableHead>
-                <TableHead className="w-0" />
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {products.map((p) => (
-                <TableRow key={p.id}>
-                  <TableCell className="font-medium">{p.name}</TableCell>
-                  <TableCell className="text-muted-foreground">{p.sku}</TableCell>
-                  <TableCell className="text-right text-amber-600 dark:text-amber-400">
-                    {p.inventory}
-                  </TableCell>
-                  <TableCell className="text-right">${formatPrice(p.price)}</TableCell>
-                  <TableCell>
-                    <Link href={`/products/${p.slug}`}>
-                      <Button variant="ghost" size="sm">
-                        View
-                      </Button>
-                    </Link>
-                  </TableCell>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="text-xs sm:text-sm">Product</TableHead>
+                  <TableHead className="hidden text-muted-foreground sm:table-cell">SKU</TableHead>
+                  <TableHead className="text-right text-xs sm:text-sm">Stock</TableHead>
+                  <TableHead className="text-right text-xs sm:text-sm">Price</TableHead>
+                  <TableHead className="w-0" />
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {products.map((p) => (
+                  <TableRow key={p.id}>
+                    <TableCell className="max-w-[100px] truncate font-medium sm:max-w-none">{p.name}</TableCell>
+                    <TableCell className="hidden text-muted-foreground sm:table-cell">{p.sku}</TableCell>
+                    <TableCell className="text-right text-amber-600 dark:text-amber-400">
+                      {p.inventory}
+                    </TableCell>
+                    <TableCell className="text-right text-xs sm:text-sm">${formatPrice(p.price)}</TableCell>
+                    <TableCell>
+                      <Link href={`/products/${p.slug}`}>
+                        <Button variant="ghost" size="sm">
+                          View
+                        </Button>
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
         )}
       </CardContent>

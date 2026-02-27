@@ -20,23 +20,23 @@ export function ProductsByOwnerChart({ data }: ProductsByOwnerChartProps) {
   const chartData = data.map((d) => ({ ...d, count: d.count }))
   if (!chartData.length) {
     return (
-      <Card className="border-border">
-        <CardHeader>
-          <CardTitle>Products by owner (Top 5)</CardTitle>
+      <Card className="border-border min-w-0">
+        <CardHeader className="px-4 sm:px-6">
+          <CardTitle className="text-base sm:text-lg">Products by owner (Top 5)</CardTitle>
         </CardHeader>
-        <CardContent className="flex h-[240px] items-center justify-center text-muted-foreground">
+        <CardContent className="flex h-[200px] items-center justify-center text-sm text-muted-foreground sm:h-[240px]">
           No data
         </CardContent>
       </Card>
     )
   }
   return (
-    <Card className="border-border">
-      <CardHeader>
-        <CardTitle>Products by owner (Top 5)</CardTitle>
+    <Card className="border-border min-w-0">
+      <CardHeader className="px-4 sm:px-6">
+        <CardTitle className="text-base sm:text-lg">Products by owner (Top 5)</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="h-[240px] w-full min-w-0">
+      <CardContent className="px-4 sm:px-6">
+        <div className="h-[200px] w-full min-w-0 sm:h-[240px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               layout="vertical"
@@ -58,7 +58,7 @@ export function ProductsByOwnerChart({ data }: ProductsByOwnerChartProps) {
               <YAxis
                 type="category"
                 dataKey="ownerName"
-                width={80}
+                width={72}
                 tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
                 axisLine={false}
                 tickLine={false}

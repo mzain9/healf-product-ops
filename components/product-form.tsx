@@ -111,16 +111,16 @@ export function ProductForm({ product, isEditing = false }: ProductFormProps) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <Link href="/products" className="inline-block">
-        <Button variant="ghost">
-          <ArrowLeft className="w-4 h-4 mr-2" />
+        <Button variant="ghost" size="sm" className="gap-2">
+          <ArrowLeft className="h-4 w-4 shrink-0" />
           Back to Products
         </Button>
       </Link>
 
-      <Card className="p-6 border-border">
-        <h1 className="text-2xl font-bold text-foreground mb-6">
+      <Card className="border-border p-4 sm:p-6">
+        <h1 className="mb-4 text-xl font-bold tracking-tight text-foreground sm:mb-6 sm:text-2xl">
           {isEditing ? 'Edit Product' : 'Create New Product'}
         </h1>
 
@@ -135,11 +135,11 @@ export function ProductForm({ product, isEditing = false }: ProductFormProps) {
               </div>
             )}
             {imagePreview && (
-              <div className="mb-6">
-                <label className="text-sm font-medium text-foreground mb-2 block">
+              <div className="mb-4 sm:mb-6">
+                <label className="mb-2 block text-sm font-medium text-foreground">
                   Image Preview
                 </label>
-                <div className="relative w-32 h-32 bg-muted rounded-lg overflow-hidden border-2 border-border">
+                <div className="relative h-28 w-28 rounded-lg overflow-hidden border-2 border-border bg-muted sm:h-32 sm:w-32">
                   <Image
                     src={imagePreview}
                     alt="Product preview"
@@ -150,7 +150,7 @@ export function ProductForm({ product, isEditing = false }: ProductFormProps) {
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
               <FormField
                 control={form.control}
                 name="sku"
@@ -199,7 +199,7 @@ export function ProductForm({ product, isEditing = false }: ProductFormProps) {
               )}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
               <FormField
                 control={form.control}
                 name="price"
@@ -263,7 +263,7 @@ export function ProductForm({ product, isEditing = false }: ProductFormProps) {
               )}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
               <FormField
                 control={form.control}
                 name="ownerId"
@@ -276,7 +276,7 @@ export function ProductForm({ product, isEditing = false }: ProductFormProps) {
                       disabled={ownersLoading}
                     >
                       <FormControl>
-                        <SelectTrigger className="w-1/3">
+                        <SelectTrigger className="w-full">
                           <SelectValue placeholder={ownersLoading ? 'Loading owners…' : 'Select the owner'} />
                         </SelectTrigger>
                       </FormControl>
@@ -319,12 +319,13 @@ export function ProductForm({ product, isEditing = false }: ProductFormProps) {
               />
             </div>
 
-            <div className="flex gap-3 pt-6 border-t border-border">
+            <div className="flex flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:pt-6">
               <Button
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
                 aria-busy={isSubmitting}
+                className="w-full sm:w-auto"
               >
                 {isSubmitting
                   ? 'Saving...'
@@ -332,8 +333,8 @@ export function ProductForm({ product, isEditing = false }: ProductFormProps) {
                     ? 'Update Product'
                     : 'Create Product'}
               </Button>
-              <Link href="/products">
-                <Button type="button" variant="outline" size="lg">
+              <Link href="/products" className="w-full sm:w-auto">
+                <Button type="button" variant="outline" size="lg" className="w-full">
                   Cancel
                 </Button>
               </Link>

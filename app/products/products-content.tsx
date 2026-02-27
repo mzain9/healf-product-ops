@@ -193,23 +193,27 @@ export function ProductsContent() {
   }, [filters, updateUrlFromFilters])
 
   return (
-    <div className="space-y-6">
-      <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-4xl font-bold text-foreground">Products</h1>
-          <p className="mt-2 text-muted-foreground">Manage and view product inventory</p>
+    <div className="space-y-4 sm:space-y-6">
+      <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+            Products
+          </h1>
+          <p className="mt-1.5 text-sm text-muted-foreground sm:mt-2 sm:text-base">
+            Manage and view product inventory
+          </p>
         </div>
-        <Link href="/products/new">
-          <Button size="lg" className="gap-2">
-            <Plus className="h-4 w-4" />
+        <Link href="/products/new" className="w-full sm:w-auto">
+          <Button size="lg" className="w-full gap-2 sm:w-auto">
+            <Plus className="h-4 w-4 shrink-0" />
             Add product
           </Button>
         </Link>
       </header>
 
-      <Card className="border-border px-4 py-3">
-        <div className="flex flex-nowrap items-center gap-2 overflow-x-auto">
-          <div className="relative flex-1 min-w-[160px] overflow-visible p-[3px]">
+      <Card className="border-border px-3 py-2 sm:px-4 sm:py-3">
+        <div className="flex flex-row flex-wrap items-center gap-2 sm:flex-nowrap">
+          <div className="relative min-w-0 flex-1 overflow-visible p-[3px]">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="text"
@@ -222,30 +226,27 @@ export function ProductsContent() {
           </div>
 
           <div
-            className={`shrink-0 overflow-hidden transition-[max-width,opacity] duration-300 ease-out ${filtersOpen ? 'max-w-0 opacity-0' : 'max-w-[100px] opacity-100'
-              }`}
+            className={`flex shrink-0 overflow-hidden transition-[max-width,opacity] duration-300 ease-out ${filtersOpen ? 'max-w-0 opacity-0' : 'max-w-[100px] opacity-100'}`}
           >
             <Button
               type="button"
               variant="outline"
               size="sm"
-              className="h-9 gap-1.5 border-border text-sm"
+              className="h-9 shrink-0 gap-1.5 border-border text-sm"
               onClick={() => setFiltersOpen(true)}
               aria-expanded={filtersOpen}
               aria-haspopup="listbox"
             >
-              <Filter className="h-3.5 w-3.5" />
+              <Filter className="h-3.5 w-3.5 shrink-0" />
               Filters
             </Button>
           </div>
 
           <div
-            className={`shrink-0 overflow-hidden transition-[max-width,opacity] duration-300 ease-out ${filtersOpen ? 'max-w-[380px] opacity-100' : 'max-w-0 opacity-0'
-              }`}
+            className={`shrink-0 overflow-hidden transition-[max-width,opacity] duration-300 ease-out ${filtersOpen ? 'w-full min-w-full max-w-full opacity-100 sm:min-w-0 sm:w-auto sm:max-w-[380px]' : 'max-w-0 opacity-0'}`}
           >
             <div
-              className={`flex flex-nowrap items-center gap-2 transition-all duration-300 ease-out ${filtersOpen ? 'translate-x-0 opacity-100 delay-50' : 'translate-x-3 opacity-0 delay-0'
-                }`}
+              className={`flex flex-wrap items-center gap-2 transition-all duration-300 ease-out sm:flex-nowrap ${filtersOpen ? 'translate-x-0 opacity-100 delay-50' : 'translate-x-3 opacity-0 delay-0'}`}
             >
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

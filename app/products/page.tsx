@@ -9,10 +9,14 @@ export const metadata = {
 
 function ProductsFallback() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <header>
-        <h1 className="text-4xl font-bold text-foreground">Products</h1>
-        <p className="mt-2 text-muted-foreground">Manage and view product inventory</p>
+        <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+          Products
+        </h1>
+        <p className="mt-1.5 text-sm text-muted-foreground sm:mt-2 sm:text-base">
+          Manage and view product inventory
+        </p>
       </header>
       <Card className="border-border p-12 text-center">
         <div className="space-y-2">

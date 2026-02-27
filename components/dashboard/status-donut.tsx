@@ -13,23 +13,23 @@ export function StatusDonut({ data }: StatusDonutProps) {
   const filtered = data.filter((d) => d.value > 0)
   if (filtered.length === 0) {
     return (
-      <Card className="border-border">
-        <CardHeader>
-          <CardTitle>Products by status</CardTitle>
+      <Card className="border-border min-w-0">
+        <CardHeader className="px-4 sm:px-6">
+          <CardTitle className="text-base sm:text-lg">Products by status</CardTitle>
         </CardHeader>
-        <CardContent className="flex h-[240px] items-center justify-center text-muted-foreground">
+        <CardContent className="flex h-[200px] items-center justify-center text-sm text-muted-foreground sm:h-[240px]">
           No data
         </CardContent>
       </Card>
     )
   }
   return (
-    <Card className="border-border">
-      <CardHeader>
-        <CardTitle>Products by status</CardTitle>
+    <Card className="border-border min-w-0">
+      <CardHeader className="px-4 sm:px-6">
+        <CardTitle className="text-base sm:text-lg">Products by status</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="h-[240px] w-full">
+      <CardContent className="px-4 sm:px-6">
+        <div className="h-[200px] w-full sm:h-[240px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie

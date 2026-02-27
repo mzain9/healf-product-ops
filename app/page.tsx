@@ -78,15 +78,17 @@ export default async function HomePage() {
   ] as const
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-4xl font-bold text-foreground">Dashboard</h1>
-          <p className="mt-2 text-muted-foreground">
+        <div className="min-w-0">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+            Dashboard
+          </h1>
+          <p className="mt-1.5 text-sm text-muted-foreground sm:mt-2 sm:text-base">
             Product management overview
           </p>
         </div>
-        <nav className="flex flex-wrap items-center gap-2">
+        <nav className="flex flex-wrap items-center gap-2 sm:gap-3">
           <Link href="/products/new">
             <Button className="gap-2">
               <Package className="h-4 w-4" />
@@ -110,21 +112,21 @@ export default async function HomePage() {
 
       <section>
         <h2 className="sr-only">Key metrics</h2>
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-[0.95fr_0.95fr_0.95fr_0.95fr_1.2fr]">
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-5">
           {kpiCards.map(({ label, value, icon: Icon, className }) => (
             <li key={label}>
-              <Card className="border-border p-4 transition-shadow hover:shadow-md md:p-5">
-                <div className="flex items-start justify-between">
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium text-muted-foreground">
+              <Card className="border-border p-4 transition-shadow hover:shadow-md sm:p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-medium text-muted-foreground sm:text-sm">
                       {label}
                     </p>
-                    <p className="mt-1 truncate text-2xl font-bold text-foreground md:text-3xl">
+                    <p className="mt-1 truncate text-xl font-bold text-foreground sm:text-2xl md:text-3xl">
                       {value}
                     </p>
                   </div>
-                  <div className={`shrink-0 rounded-lg p-2.5 ${className}`}>
-                    <Icon className="h-5 w-5 md:h-6 md:w-6" />
+                  <div className={`shrink-0 rounded-lg p-2 sm:p-2.5 ${className}`}>
+                    <Icon className="h-5 w-5 sm:h-5 sm:w-5 md:h-6 md:w-6" />
                   </div>
                 </div>
               </Card>
@@ -133,13 +135,13 @@ export default async function HomePage() {
         </ul>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-3">
+      <section className="grid gap-4 sm:gap-6 lg:grid-cols-3">
         <StatusDonut data={statusCounts} />
         <ProductsOverTimeChart data={productsOverTime} />
         <ProductsByOwnerChart data={productsByOwner} />
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-2">
+      <section className="grid gap-4 sm:gap-6 lg:grid-cols-2">
         <LowStockAlerts products={lowStockProducts} />
         <RecentProducts products={recentProducts} />
       </section>

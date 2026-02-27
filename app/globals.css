@@ -119,8 +119,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   a,
   button {
@@ -129,5 +135,4 @@
   button:disabled {
     cursor: not-allowed;
   }
-
 }

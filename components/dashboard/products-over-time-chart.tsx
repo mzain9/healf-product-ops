@@ -19,23 +19,23 @@ interface ProductsOverTimeChartProps {
 export function ProductsOverTimeChart({ data }: ProductsOverTimeChartProps) {
   if (!data.length) {
     return (
-      <Card className="border-border">
-        <CardHeader>
-          <CardTitle>Products created over time</CardTitle>
+      <Card className="border-border min-w-0">
+        <CardHeader className="px-4 sm:px-6">
+          <CardTitle className="text-base sm:text-lg">Products created over time</CardTitle>
         </CardHeader>
-        <CardContent className="flex h-[240px] items-center justify-center text-muted-foreground">
+        <CardContent className="flex h-[200px] items-center justify-center text-sm text-muted-foreground sm:h-[240px]">
           No data
         </CardContent>
       </Card>
     )
   }
   return (
-    <Card className="border-border">
-      <CardHeader>
-        <CardTitle>Products created over time</CardTitle>
+    <Card className="border-border min-w-0">
+      <CardHeader className="px-4 sm:px-6">
+        <CardTitle className="text-base sm:text-lg">Products created over time</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="h-[240px] w-full">
+      <CardContent className="px-4 sm:px-6">
+        <div className="h-[200px] w-full sm:h-[240px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
               <defs>

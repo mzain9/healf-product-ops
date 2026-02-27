@@ -20,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -274,7 +275,97 @@ export function ProductsTable({
   return (
     <>
       <div className="rounded-xl border border-border bg-card overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Mobile card list */}
+        <div className="space-y-3 p-3 md:hidden">
+          {loading ? (
+            Array.from({ length: 5 }).map((_, i) => (
+              <Card key={i} className="border-border p-4">
+                <div className="flex gap-3">
+                  <Skeleton className="h-14 w-14 shrink-0 rounded-lg" />
+                  <div className="min-w-0 flex-1 space-y-2">
+                    <Skeleton className="h-4 w-3/4" />
+                    <Skeleton className="h-3 w-1/2" />
+                    <Skeleton className="h-3 w-1/3" />
+                  </div>
+                </div>
+              </Card>
+            ))
+          ) : products.length === 0 ? (
+            <p className="py-8 text-center text-sm text-muted-foreground">
+              No products found
+            </p>
+          ) : (
+            products.map((product) => (
+              <Card
+                key={product.id}
+                className="border-border p-4 transition-shadow hover:shadow-md"
+              >
+                <div className="flex gap-3">
+                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-border bg-muted">
+                    {product.imageUrl ? (
+                      <Image
+                        src={product.imageUrl}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center text-lg font-medium text-muted-foreground">
+                        {product.name.charAt(0)}
+                      </div>
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate font-medium text-foreground" title={product.name}>
+                      {product.name}
+                    </p>
+                    <p className="truncate text-xs font-mono text-muted-foreground" title={product.sku}>
+                      {product.sku}
+                    </p>
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <Badge variant={getStatusVariant(product.status)} className="text-xs">
+                        {PRODUCT_STATUS_LABELS[product.status as keyof typeof PRODUCT_STATUS_LABELS] ?? product.status}
+                      </Badge>
+                      <span className="text-sm font-medium tabular-nums text-foreground">
+                        ${formatPrice(product.price)}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        · {product.inventory} in stock
+                      </span>
+                    </div>
+                    <div className="mt-3 flex gap-2">
+                      <Button variant="ghost" size="sm" className="h-8 gap-1.5 px-2" asChild>
+                        <Link href={`/products/${product.slug}`} aria-label={`View ${product.name}`}>
+                          <Eye className="h-3.5 w-3.5" />
+                          View
+                        </Link>
+                      </Button>
+                      <Button variant="ghost" size="sm" className="h-8 gap-1.5 px-2" asChild>
+                        <Link href={`/products/${product.slug}/edit`} aria-label={`Edit ${product.name}`}>
+                          <Edit2 className="h-3.5 w-3.5" />
+                          Edit
+                        </Link>
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 gap-1.5 px-2 text-destructive hover:bg-destructive/10 hover:text-destructive"
+                        onClick={() => setDeleteProductId(product.id)}
+                        aria-label={`Delete ${product.name}`}
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                        Delete
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))
+          )}
+        </div>
+
+        {/* Desktop table */}
+        <div className="hidden overflow-x-auto md:block">
           <Table className="table-fixed w-full min-w-[900px]">
             <TableHeader>
               <TableRow className="border-border bg-muted/40 hover:bg-muted/40">
@@ -442,6 +533,7 @@ export function ProductsTable({
           </Table>
         </div>
 
+        {/* Pagination - show for both mobile and desktop */}
         {loading ? (
           <div className="flex flex-col gap-4 border-t border-border bg-muted/20 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
             <Skeleton className="h-4 w-48" />
@@ -454,13 +546,13 @@ export function ProductsTable({
             </div>
           </div>
         ) : total > 0 ? (
-          <div className="flex flex-col gap-4 border-t border-border bg-muted/20 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col gap-4 border-t border-border bg-muted/20 px-3 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-4">
+            <p className="text-center text-xs text-muted-foreground sm:text-left sm:text-sm">
               Showing <span className="font-medium text-foreground">{start}</span> to{' '}
               <span className="font-medium text-foreground">{end}</span> of{' '}
               <span className="font-medium text-foreground">{total}</span> results
             </p>
-            <div className="flex items-center gap-1">
+            <div className="flex flex-wrap items-center justify-center gap-1 sm:justify-end">
               <Button
                 variant="outline"
                 size="icon"
@@ -471,7 +563,7 @@ export function ProductsTable({
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-              <div className="flex items-center gap-0.5">
+              <div className="flex flex-wrap items-center justify-center gap-0.5">
                 {getPageNumbers().map((page, i) =>
                   page === 'ellipsis' ? (
                     <span
@@ -485,7 +577,7 @@ export function ProductsTable({
                       key={page}
                       variant={currentPage === page ? 'default' : 'outline'}
                       size="icon"
-                      className="h-9 w-9 shrink-0"
+                      className="h-9 w-9 shrink-0 min-w-9"
                       onClick={() => onPageChange(page)}
                       aria-label={currentPage === page ? `Page ${page}, current page` : `Go to page ${page}`}
                       aria-current={currentPage === page ? 'page' : undefined}
