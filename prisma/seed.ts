@@ -1,4 +1,4 @@
-import { PrismaClient } from '@/lib/generated/prisma/client'
+import { PrismaClient } from '@prisma/client'
 import { slugify, uniqueProductSlug } from '../lib/slug'
 
 const prisma = new PrismaClient()
