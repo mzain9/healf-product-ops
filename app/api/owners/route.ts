@@ -2,10 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getOwners } from '@/lib/owners'
 import { apiErrorResponse } from '@/lib/api-response'
 
+type OwnerWithCount = Awaited<ReturnType<typeof getOwners>>[number]
+
 export async function GET(_request: NextRequest) {
   try {
     const owners = await getOwners()
-    const list = owners.map((o) => ({
+    const list = owners.map((o: OwnerWithCount) => ({
       id: o.id,
       name: o.name,
       slug: o.slug,

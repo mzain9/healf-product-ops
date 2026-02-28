@@ -4,6 +4,8 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { getOwners } from '@/lib/owners'
 
+type OwnerWithCount = Awaited<ReturnType<typeof getOwners>>[number]
+
 export const metadata = {
   title: 'Product owners',
   description: 'Manage product owners',
@@ -31,7 +33,7 @@ export default async function OwnersPage() {
             </Card>
           </li>
         ) : (
-          owners.map((owner) => (
+          owners.map((owner: OwnerWithCount) => (
             <li key={owner.id}>
               <Card className="border-border p-4 sm:p-6">
                 <div className="mb-3 flex items-center gap-3 sm:mb-4 sm:gap-4">

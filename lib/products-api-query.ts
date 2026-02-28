@@ -1,4 +1,4 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@/lib/generated/prisma/client'
 import { prisma } from '@/lib/db'
 import {
   PRODUCT_STATUSES,
@@ -38,7 +38,7 @@ export async function resolveOwnerIds(ownerParams: string[]): Promise<number[]> 
     where,
     select: { id: true },
   })
-  return [...new Set(owners.map((o: { id: number }) => o.id))]
+  return Array.from(new Set(owners.map((o) => o.id)))
 }
 
 export function parseProductsQuery(searchParams: URLSearchParams): Omit<ProductsQueryParsed, 'ownerIds'> & { ownerParams: string[] } {
