@@ -112,7 +112,7 @@ export default async function HomePage() {
 
       <section>
         <h2 className="sr-only">Key metrics</h2>
-        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-5">
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-[1fr_1fr_1fr_1fr_1.4fr]">
           {kpiCards.map(({ label, value, icon: Icon, className }) => (
             <li key={label}>
               <Card className="border-border p-4 transition-shadow hover:shadow-md sm:p-5">
